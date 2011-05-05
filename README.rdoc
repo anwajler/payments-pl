@@ -89,6 +89,20 @@ Cancelling and confirming transaction is similar to getting transaction state:
   status, transaction = Payments[params[:pos_id]].cancel params[:session_id]
   status, transaction = Payments[params[:pos_id]].confirm params[:session_id]
 
+== Rails 3 
+
+To get it working in Rails 3 you need following changes:
+
+  app/helpers/payments_helper.rb
+
+  module PaymentsHelper
+    include Payments::ViewHelpers
+  end
+
+  config/initializers/payments.rb
+
+  Payments.init("#{Rails.root}/config/payments.yml")
+
 == Copyright
 
 Copyright (c) 2010 Michał Młoźniak. See LICENSE for details.
